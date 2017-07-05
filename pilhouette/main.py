@@ -7,7 +7,7 @@ import welcome
 import explain
 import capture
 import confirm
-import email
+import send
 import success
 import home
 
@@ -18,11 +18,12 @@ class AppController(ttk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.frame_welcome = welcome.Welcome(self.master, self)
+        self.current_frame = self.frame_welcome = welcome.Welcome(self.master, self)
         #self.frame_welcome.pack(fill=tk.BOTH, expand=True)
         self.frame_welcome.grid(row=0, column=0, sticky="news")
         self.master.grid_columnconfigure(0, weight=1)
         self.master.grid_rowconfigure(0, weight=1)
+        self.master.grid_rowconfigure(1, weight=0)
 
     def set_lang(self, lang):
         self.lang = lang
@@ -32,7 +33,7 @@ class AppController(ttk.Frame):
         self.frame_home = home.Home(self.master, self)
         self.frame_home.grid(row=1, column=0, sticky="news")
 
-        self.frame_explain = explain.Explain(self.master, self)
+        self.current_frame = self.frame_explain = explain.Explain(self.master, self)
         #self.frame_explain.pack(fill=tk.BOTH, expand=True)
         self.frame_explain.grid(row=0,column=0, sticky="news")
 
@@ -40,40 +41,42 @@ class AppController(ttk.Frame):
         self.master.grid_rowconfigure(1, weight=1)
 
     def home(self):
+        self.current_frame.destroy()
+        self.frame_home.destroy()
+        self.create_widgets()
         print("home pressed")
 
     def begin(self):
         self.frame_explain.destroy()
-        self.frame_capture = capture.Capture(self.master, self)
+        self.current_frame = self.frame_capture = capture.Capture(self.master, self)
         #self.frame_capture.pack(fill=tk.BOTH, expand=True)
         self.frame_capture.grid(row=0, column=0, sticky="news")
 
     def capture(self, image=""): #TODO: remove dummy
         self.frame_capture.destroy()
-        self.frame_confirm = confirm.Confirm(self.master, self, image)
+        self.current_frame = self.frame_confirm = confirm.Confirm(self.master, self, image)
         #self.frame_confirm.pack(fill=tk.BOTH, expand=True)
         self.frame_confirm.grid(row=0, column=0, sticky="news")
 
     def retake(self):
         self.frame_confirm.destroy()
-        self.frame_capture = capture.Capture(self.master, self)
+        self.current_frame = self.frame_capture = capture.Capture(self.master, self)
         #self.frame_capture.pack(fill=tk.BOTH, expand=True)
         self.frame_capture.grid(row=0, column=0, sticky="news")
 
     def confirm(self, silhouette=""): #TODO: remove dummy
         self.frame_confirm.destroy()
-        self.frame_email = email.Email(self.master, self, silhouette)
+        self.current_frame = self.frame_send = send.Send(self.master, self, silhouette)
         #self.frame_email.pack(fill=tk.BOTH, expand=True)
-        self.frame_email.grid(row=0, column=0, sticky="news")
+        self.frame_send.grid(row=0, column=0, sticky="news")
 
     def success(self, address):
-        self.frame_email.destroy()
-        self.frame_success = success.Success(self.master, self, address)
+        self.frame_send.destroy()
+        self.current_frame = self.frame_success = success.Success(self.master, self, address)
         #self.frame_success.pack(fill=tk.BOTH, expand=True)
         self.frame_success.grid(row=0, column=0, sticky="news")
 
 if __name__ == "__main__":
-    print(email)
     root = tk.Tk()
     root.geometry("800x480")
     App = AppController(root)

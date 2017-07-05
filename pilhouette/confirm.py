@@ -8,13 +8,15 @@ class Confirm(tk.Frame):
         self.controller = controller
         self.create_widgets()
     def create_widgets(self):
-        self.placeholder_raw = tk.Label(self, bg="blue")
+        self.feed = tk.PhotoImage(file="images/examples/placeholder2.gif")
+        self.processed = tk.PhotoImage(file="images/examples/placeholder3.gif")
+        self.placeholder_raw = tk.Label(self, image=self.feed)
         self.placeholder_raw.grid(row=0, rowspan=3, column=0, sticky="news")
 
-        self.button_retake = ttk.Button(self, text="Retake")
+        self.button_retake = ttk.Button(self, text="Retake", command=self.controller.retake)
         self.button_retake.grid(row=3, column=0, sticky="news")
 
-        self.placeholder_processed = tk.Label(self, bg="green")
+        self.placeholder_processed = tk.Label(self, image=self.processed)
         self.placeholder_processed.grid(row=1, column=1, sticky="news")
 
         self.button_prev = ttk.Button(self, text="Previous")

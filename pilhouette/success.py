@@ -10,21 +10,29 @@ class Success(tk.Frame):
         self.create_widgets()
     def create_widgets(self):
         self.label_thankyou = ttk.Label(self, text="Thank you for using Pilhouette!")
-        self.label_thankyou.grid(row=0,column=0, columnspan=2)
+        self.label_thankyou.grid(row=0,column=0, columnspan=2, sticky="news")
 
         self.label_success = ttk.Label(self, text="Email sent successfully to {}".format(self.address))
-        self.label_success.grid(row=1, column=0)
+        self.label_success.grid(row=1, column=0, sticky="news")
 
         self.button_toggle = ttk.Button(self)
-        self.button_toggle.grid(row=1,column=1)
+        self.button_toggle.grid(row=1,column=1, sticky="news")
         self.address_toggle(False)
 
         self.label_spam = ttk.Label(self, text="[SPAM MESSAGE]")
-        self.label_spam.grid(row=2, column=0, columnspan=2)
+        self.label_spam.grid(row=2, column=0, columnspan=2, sticky="news")
 
         self.label_timer = ttk.Label(self, text="Restarting in 10 seconds...")
-        self.label_timer.grid(row=3, column=0, columnspan=2)
+        self.label_timer.grid(row=3, column=0, columnspan=2, sticky="news")
         self.countdown(10)
+
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        #self.row_configure(0, weight=1)
     def address_toggle(self, visible): # boolean, true if currently visible
         if visible: # hide the address
             self.label_success.config(text="Email sent successfully")

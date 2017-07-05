@@ -1,16 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
-import email
+#import email
 
-class Email(tk.Frame):
+class Send(tk.Frame):
     def __init__(self, master, controller, processed):
-        print(email)
         tk.Frame.__init__(self, master)
         self.master = master
         self.controller = controller
         self.create_widgets()
     def create_widgets(self):
-        self.placeholder_processed = tk.Label(self, bg="green")
+        self.processed = tk.PhotoImage(file="images/examples/placeholder3.gif")
+
+        self.placeholder_processed = tk.Label(self, image=self.processed)
         self.placeholder_processed.grid(row=0, rowspan=3, column=0, sticky="news")
 
         self.label_email = ttk.Label(self, text="Email:")

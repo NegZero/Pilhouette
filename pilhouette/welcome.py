@@ -10,6 +10,11 @@ class Welcome(tk.Frame):
         self.selection = ""
     def create_widgets(self):
 
+        self.placeholder = tk.Label(self, bg="red")
+        self.placeholder.grid(row=0, rowspan=5, column=0, sticky="news")
+
+        self.controller.after(2000, lambda: print(self.placeholder.winfo_height(), self.placeholder.winfo_width()))
+
         self.label_langsel = ttk.Label(self, text="Select a language to begin")
         self.label_langsel.grid(row=0, column=1)
 

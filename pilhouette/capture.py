@@ -19,7 +19,7 @@ class Capture(tk.Frame):
         self.button_capture = ttk.Button(self, text="Capture", command=self.capture)
         self.button_capture.grid(row=1, column=0, sticky="news")
 
-        self.label_tips = ttk.Label(self, text="When you are ready to take a picture, press the 'Capture' button.\n\nRemember that only your outline will be seen in the final silhouette, so try and pose in a way that makes for an interesting result.\n\nDon't be afraid to experiment, you can retake your picture as many times as you want!", wraplength=300)
+        self.label_tips = ttk.Label(self, text="When you are ready to take a picture, press the 'Capture' button.\n\nRemember that only your outline will be seen in the final silhouette, so try and pose in a way that makes for an interesting result.\n\nDon't be afraid to experiment, you can retake your picture as many times as you want!", wraplength=450)
         self.label_tips.grid(row=0, column=1, sticky="news")
 
         self.label_status = ttk.Label(self)

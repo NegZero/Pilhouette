@@ -19,7 +19,7 @@ class Success(tk.Frame):
         self.button_toggle.grid(row=1,column=1, sticky="news")
         self.address_toggle(False)
 
-        self.label_spam = ttk.Label(self, text="[SPAM MESSAGE]")
+        self.label_spam = ttk.Label(self, text="If you don't see our email, be sure to check your spam folder in case it was incorrectly caught by a spam filter.")
         self.label_spam.grid(row=2, column=0, columnspan=2, sticky="news")
 
         self.label_timer = ttk.Label(self, text="Restarting in 10 seconds...")

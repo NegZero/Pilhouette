@@ -25,7 +25,7 @@ class Send(tk.Frame):
         self.placeholder_processed = tk.Label(self, image=self.image)
         self.placeholder_processed.grid(row=0, rowspan=5, column=0, sticky="news")
 
-        self.label_message = ttk.Label(self, text="Please make sure you have entered your correct email address before pressing the 'Send' button - we cannot tell if you have entered the incorrect email address.", wraplength=450)
+        self.label_message = ttk.Label(self, text="Please make sure you have entered your correct email address before pressing the 'Send' button - we cannot tell if you have entered the incorrect email address.", wraplength=480)
         self.label_message.grid(row=0, column=1, columnspan=2, sticky="news")
 
         self.label_email = ttk.Label(self, text="Email:")
@@ -41,7 +41,7 @@ class Send(tk.Frame):
         self.label_status = ttk.Label(self, text="")
         self.label_status.grid(row=3, column=1, columnspan=2, sticky="news")
 
-        self.placeholder_keyboard = tk.Label(self, bg="red")
+        self.placeholder_keyboard = tk.Label(self)
         self.placeholder_keyboard.grid(row=4, column=1, columnspan=2, sticky="news")
 
         self.rowconfigure(0, weight=1)

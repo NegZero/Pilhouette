@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 class Welcome(tk.Frame):
     def __init__(self, master, controller):
@@ -10,10 +11,10 @@ class Welcome(tk.Frame):
         self.selection = ""
     def create_widgets(self):
 
-        self.placeholder = tk.Label(self, bg="red")
-        self.placeholder.grid(row=0, rowspan=5, column=0, sticky="news")
+        self.splash = ImageTk.PhotoImage(Image.open("images/welcome.png"))
 
-        self.controller.after(2000, lambda: print(self.placeholder.winfo_height(), self.placeholder.winfo_width()))
+        self.label_splash = tk.Label(self, image=self.splash)
+        self.label_splash.grid(row=0, rowspan=5, column=0, sticky="news")
 
         self.label_langsel = ttk.Label(self, text="Select a language to begin")
         self.label_langsel.grid(row=0, column=1)
@@ -39,7 +40,5 @@ class Welcome(tk.Frame):
         self.rowconfigure(2, weight=7)
         self.rowconfigure(3, weight=7)
         self.rowconfigure(4, weight=7)
-        self.columnconfigure(0, weight=3)
+        self.columnconfigure(0, weight=0)
         self.columnconfigure(1, weight=1)
-
-

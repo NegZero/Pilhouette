@@ -44,7 +44,7 @@ class AppController(ttk.Frame):
         self.current_frame.destroy()
         self.frame_home.destroy()
         self.create_widgets()
-        print("home pressed")
+        #print("home pressed")
 
     def begin(self):
         self.frame_explain.destroy()
@@ -64,9 +64,9 @@ class AppController(ttk.Frame):
         #self.frame_capture.pack(fill=tk.BOTH, expand=True)
         self.frame_capture.grid(row=0, column=0, sticky="news")
 
-    def confirm(self, silhouette=""): #TODO: remove dummy
+    def confirm(self, image, filename):
         self.frame_confirm.destroy()
-        self.current_frame = self.frame_send = send.Send(self.master, self, silhouette)
+        self.current_frame = self.frame_send = send.Send(self.master, self, image, filename)
         #self.frame_email.pack(fill=tk.BOTH, expand=True)
         self.frame_send.grid(row=0, column=0, sticky="news")
 

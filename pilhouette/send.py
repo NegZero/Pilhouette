@@ -35,7 +35,7 @@ class Send(tk.Frame):
         self.entry_email = ttk.Entry(self)
         self.entry_email.grid(row=1, column=2, sticky="news")
         self.entry_email.bind("<FocusIn>", self.keyboard_open)
-        self.entry_email.bind("<FocusOut>", self.keyboard_close )
+        #self.entry_email.bind("<FocusOut>", self.keyboard_close )
         #TODO: Some kinda event for popping up onscreen keyboard
 
         self.button_send = ttk.Button(self, text="Send", command=self.send)
@@ -55,9 +55,9 @@ class Send(tk.Frame):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
-    def keyboard_open(self):
+    def keyboard_open(self, _):
         self.keyboard = subprocess.Popen("matchbox-keyboard")
-    def keyboard_close(self):
+    def keyboard_close(self, _):
         self.keyboard.terminate()
     def send(self):
         self.label_status.config(text="Sending...")

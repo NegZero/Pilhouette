@@ -55,9 +55,9 @@ class Send(tk.Frame):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
-    def keyboard_open(self):
+    def keyboard_open(self, _):
         self.keyboard = subprocess.Popen("matchbox-keyboard")
-    def keyboard_close(self):
+    def keyboard_close(self, _):
         self.keyboard.terminate()
     def send(self):
         self.label_status.config(text="Sending...")

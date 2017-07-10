@@ -36,10 +36,10 @@ class Capture(tk.Frame):
         super(Capture, self).destroy()
     def draw_preview(self):
         self.cam = PiCamera()
-        self.cam.resolution = (3280, 2460)
-        self.cam.rotation = 270
-        feed_pos_dim = (self.placeholder_feed.winfo_rootx(), self.placeholder_feed.winfo_rooty(), self.placeholder_feed.winfo_width(), self.placeholder_feed.winfo_height())
-        self.cam.start_preview(fullscreen=False, window=feed_pos_dim)
+        self.cam.resolution = (3200, 2400)
+
+        feed_pos_dim = (10, 10, 270, 360)
+        self.cam.start_preview(fullscreen=False, window=feed_pos_dim, rotation=270)
 
     def capture(self):
         self.label_status.config(text="Generating...")

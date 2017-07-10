@@ -54,7 +54,7 @@ class AppController(ttk.Frame):
 
     def capture(self):
         self.frame_capture.destroy()
-        self.current_frame = self.frame_confirm = confirm.Confirm(self.master, self, image)
+        self.current_frame = self.frame_confirm = confirm.Confirm(self.master, self)
         #self.frame_confirm.pack(fill=tk.BOTH, expand=True)
         self.frame_confirm.grid(row=0, column=0, sticky="news")
 

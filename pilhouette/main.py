@@ -78,6 +78,7 @@ class AppController(ttk.Frame):
 
 if __name__ == "__main__":
     root = tk.Tk()
+    root.attributes("-fullscreen", True)
     root.geometry("800x480")
     App = AppController(root)
     App.mainloop()

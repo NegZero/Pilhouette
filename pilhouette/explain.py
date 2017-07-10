@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from PIL import Image, ImageTk
+
 import os
 
 class Explain(tk.Frame):
@@ -10,7 +12,9 @@ class Explain(tk.Frame):
         self.controller = controller
         self.create_widgets()
     def create_widgets(self):
-        self.gallery = [tk.PhotoImage(file=os.path.join("images/examples", f)) for f in os.listdir("images/examples/")]
+        filenames = os.listdir("images/examples/")
+        images = [Image.open(os.path.join("images/examples/", f)) for f in filenames]
+        self.gallery = [ImageTk.PhotoImage(i) for i in images]
         self.gallery_length = len(self.gallery)
         self.gallery_current_pos = 0
 

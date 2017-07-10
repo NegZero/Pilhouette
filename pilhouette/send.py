@@ -56,9 +56,9 @@ class Send(tk.Frame):
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
     def keyboard_open(self, _):
-        self.keyboard = subprocess.Popen("matchbox-keyboard")
+        self.keyboard = subprocess.Popen("florence show", shell=True)
     def keyboard_close(self, _):
-        self.keyboard.terminate()
+        self.keyboard.terminate("florence hide", shell=True)
     def send(self):
         self.label_status.config(text="Sending...")
         address = self.entry_email.get()

@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 import os
 
 class Confirm(tk.Frame):
-    def __init__(self, master, controller, image):
+    def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.master = master
         self.controller = controller

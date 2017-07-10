@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from picamera import PiCamera
+
 import cv2
 import numpy as np
 
@@ -10,7 +12,7 @@ class Capture(tk.Frame):
         self.master = master
         self.controller = controller
         self.create_widgets()
-        self.process()
+        self.draw_preview()
     def create_widgets(self):
         self.feed = tk.PhotoImage(file="images/examples/placeholder2.gif")
         self.placeholder_feed = tk.Label(self, image=self.feed)
@@ -29,8 +31,19 @@ class Capture(tk.Frame):
         self.rowconfigure(1, weight=1)
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
+    def destroy(self):
+        self.cam.close() # Prevent GPU memory leaks
+        super(Capture, self).destroy()
+    def draw_preview(self):
+        self.cam = PiCamera()
+        self.cam.resolution = (3280, 2460)
+        self.cam.rotation = 270
+        feed_pos_dim = (self.placeholder_feed.winfo_rootx(), self.placeholder_feed.winfo_rooty(), self.placeholder_feed.winfo_width(), self.placeholder_feed.winfo_height())
+        self.cam.start_preview(fullscreen=False, window=feed_pos_dim)
+
     def capture(self):
         self.label_status.config(text="Generating...")
+        self.cam.capture("temp/raw.png", format="png")
         self.process()
         self.controller.capture()
     def process(self):

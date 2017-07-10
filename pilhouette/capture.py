@@ -3,6 +3,9 @@ from tkinter import ttk
 
 from picamera import PiCamera
 
+import io
+from PIL import Image
+
 import cv2
 import numpy as np
 
@@ -43,12 +46,15 @@ class Capture(tk.Frame):
 
     def capture(self):
         self.label_status.config(text="Generating...")
-        self.cam.capture("temp/raw.png", format="png")
-        self.process()
+        stream = io.BytesIO()
+        self.cam.capture(stream, format="png")
+        stream.seek(0)
+        image = Image.open(stream).rotate(90)
+        self.process(image)
         self.controller.capture()
-    def process(self):
+    def process(self, image):
         # Read in grayscale
-        grayscale = cv2.imread("temp/raw.png", cv2.IMREAD_GRAYSCALE)
+        grayscale = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
         # Add a 1px border so findContours correctly detects edges at the border
         bgrayscale = cv2.copyMakeBorder(grayscale, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=[255,255,255])
 

@@ -19,7 +19,7 @@ class Confirm(tk.Frame):
         self.gallery_length = len(self.gallery)
         self.gallery_current_pos = 0
 
-        self.feed = ImageTk.PhotoImage(image=self.image.resize(270,360))
+        self.feed = ImageTk.PhotoImage(image=self.image.resize((270,360)))
         #self.processed = tk.PhotoImage(file="images/examples/placeholder3.gif")
         self.placeholder_raw = tk.Label(self, image=self.feed)
         self.placeholder_raw.grid(row=0, column=0, sticky="news")

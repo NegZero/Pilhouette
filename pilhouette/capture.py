@@ -51,7 +51,7 @@ class Capture(tk.Frame):
         stream.seek(0)
         image = Image.open(stream).rotate(90)
         self.process(image)
-        self.controller.capture()
+        self.controller.capture(image)
     def process(self, image):
         # Read in grayscale
         grayscale = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)

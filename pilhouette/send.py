@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 import re
+import subprocess
 
 from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
@@ -33,6 +34,8 @@ class Send(tk.Frame):
 
         self.entry_email = ttk.Entry(self)
         self.entry_email.grid(row=1, column=2, sticky="news")
+        self.entry_email.bind("<FocusIn>", lambda:self.keyboard = subprocess.Popen("matchbox-keyboard"))
+        self.entry_email.bind("<FocusOut>", lambda:self.keyboard.terminate() )
         #TODO: Some kinda event for popping up onscreen keyboard
 
         self.button_send = ttk.Button(self, text="Send", command=self.send)
